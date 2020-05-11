@@ -1,8 +1,9 @@
-function x = FalsePosition(f, a, b, accuracy)
+function [x, iters] = FalsePosition(f, a, b, accuracy, maxiters)
 % Funkcja FalsePosition oblicza za pomocą
 % metody regula falsi przybliżony pierwastej
 % zadanej funkcji w zadanym przedziale
-while true
+iters = 1;
+while true && iters <= maxiters
     c = ( a * f(b) - b * f(a)) / (f(b) - f(a));
     if abs(f(c)) <= accuracy
         break;
@@ -13,6 +14,7 @@ while true
     else
         a = c;
     end
+    iters = iters + 1;
 end
 
 x = c;
